@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "975351143929",
+    "firebase_url": "https://liceoelrobleapp.firebaseio.com",
+    "project_id": "liceoelrobleapp",
+    "storage_bucket": "liceoelrobleapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975351143929:android:0cb0bbd9119a0e44",
+        "android_client_info": {
+          "package_name": "com.example.joser.liceoelroble"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "975351143929-3pg6d65fop0bqr6a3mcie7bk3vf1rjpb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh0SzOJU0bMEqKRX0u8AbQCuAeRSVy26Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

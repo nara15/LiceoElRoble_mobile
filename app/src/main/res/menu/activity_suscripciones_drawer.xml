@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/Inicio"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Inicio" />
+    </group>
+
+    <item android:title="Contacto">
+        <menu>
+            <item
+                android:id="@+id/EnviarMensaje"
+                android:title="-Santa Barbara, Heredia"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            <item
+                android:id="@+id/EnviarTelefono"
+                android:title="-24830095"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            <item
+                android:id="@+id/EnviarCorreo"
+                android:title="-liceoelroble@gmail.com"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        </menu>
+    </item>
+
+</menu>
