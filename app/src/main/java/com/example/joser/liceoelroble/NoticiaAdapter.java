@@ -1,6 +1,7 @@
 package com.example.joser.liceoelroble;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +43,7 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaViewModel>
             @Override
             public void onClick(View v)
             {
-                mListener.OnNoticiaListenerSelected(1, name, "Descripción");
+                mListener.OnNoticiaListenerSelected(imageURL, name, "Descripción");
             }
         });
     }

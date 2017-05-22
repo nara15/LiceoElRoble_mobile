@@ -3,6 +3,7 @@ package com.example.joser.liceoelroble;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -64,7 +65,7 @@ public class NoticiaListFragment extends Fragment
         recyclerView.setLayoutManager(new GridLayoutManager(activity,2));
 
         _noticias = new ArrayList<>();
-        new JSONAsyncTask().execute("http://microblogging.wingnity.com/JSONParsingTutorial/jsonActors");
+        new JSONAsyncTask().execute("https://design-web-dev-nara15.c9users.io/colegio_app/app_model/NoticiasREST.php");
 
         NoticiaAdapter noticiaAdapter = new NoticiaAdapter(activity);
         noticiaAdapter.setListener(mListener);
@@ -108,7 +109,7 @@ public class NoticiaListFragment extends Fragment
     public interface OnNoticiaListener
     {
         // TODO: Update argument type and name
-        void OnNoticiaListenerSelected(int imageResId, String name, String description);
+        void OnNoticiaListenerSelected(String imageResId, String name, String description);
     }
 
     private class JSONAsyncTask extends AsyncTask<String, Void, Boolean>

@@ -3,6 +3,7 @@ package com.example.joser.liceoelroble;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -135,8 +136,16 @@ public class NoticiasPrincipal extends AppCompatActivity
 
 
     @Override
-    public void OnNoticiaListenerSelected(int imageResId, String name, String description)
+    public void OnNoticiaListenerSelected(String image, String name, String description)
     {
-        Toast.makeText(this, "Seleccionó " + name, Toast.LENGTH_SHORT).show();
+        final NoticiaDetailFragment detailFragment =
+                NoticiaDetailFragment.newInstance(image, name);
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.include2, detailFragment, "detalleNoticia")
+                .addToBackStack(null)
+                .commit();
+        //Toast.makeText(this, "Seleccionó " + name, Toast.LENGTH_SHORT).show();
     }
 }

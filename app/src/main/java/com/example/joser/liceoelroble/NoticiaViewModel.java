@@ -20,6 +20,7 @@ public class NoticiaViewModel extends RecyclerView.ViewHolder
 {
     private ImageView _mImageView;
     private TextView _mTextView;
+    Bitmap _bitmapImage;
 
     public NoticiaViewModel(View itemView)
     {
@@ -60,6 +61,7 @@ public class NoticiaViewModel extends RecyclerView.ViewHolder
         protected void onPostExecute(Bitmap result)
         {
             this.bmImage.setImageBitmap(result);
+            _bitmapImage = result;
         }
     }
 }
