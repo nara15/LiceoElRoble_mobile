@@ -20,12 +20,14 @@ public class ControladorBD {
 
     BaseDatosF bd = new BaseDatosF();
 
-    public ControladorBD(Context pContexto){
+    public ControladorBD(Context pContexto)
+    {
         bd.crearArchivo(pContexto);
 
     }
 
-    public void escribirLinea(Context pContexto, String pLinea){
+    public void escribirLinea(Context pContexto, String pLinea)
+    {
 
         try {
             FileOutputStream stream = new FileOutputStream(bd.crearArchivo(pContexto));
@@ -35,7 +37,9 @@ public class ControladorBD {
             ObtencionDatosWeb.mostrarTexto(pContexto,"Error en escribir mensaje, en la base de datos.");
         }
     }
-    public String getTexto(Context pContext){
+
+    public String getTexto(Context pContext)
+    {
         String datos = "";
         try {
             InputStream inputStream = pContext.openFileInput(bd.NombreArvhivo);

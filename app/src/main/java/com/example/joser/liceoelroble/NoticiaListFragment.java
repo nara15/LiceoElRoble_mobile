@@ -29,6 +29,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import Controlador.ControladorBD;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -41,6 +43,7 @@ public class NoticiaListFragment extends Fragment
 {
     private ArrayList<Model.Noticia> _noticias;
     private OnNoticiaListener mListener;
+    Context contexto;
 
     public NoticiaListFragment()
     {
@@ -58,6 +61,10 @@ public class NoticiaListFragment extends Fragment
                              ViewGroup container,
                              Bundle savedInstanceState)
     {
+        ControladorBD vbd = new ControladorBD(contexto);
+        String hola = vbd.getTexto(contexto);
+        System.out.println("Holaaaaaaaa " + hola);
+
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_noticias_list, container, false);
         final Activity activity = getActivity();
@@ -65,7 +72,7 @@ public class NoticiaListFragment extends Fragment
         recyclerView.setLayoutManager(new GridLayoutManager(activity,2));
 
         _noticias = new ArrayList<>();
-        new JSONAsyncTask().execute("https://design-web-dev-nara15.c9users.io/colegio_app/app_model/NoticiasREST.php");
+        new JSONAsyncTask().execute("http://microblogging.wingnity.com/JSONParsingTutorial/jsonActors");
 
         NoticiaAdapter noticiaAdapter = new NoticiaAdapter(activity);
         noticiaAdapter.setListener(mListener);
@@ -81,17 +88,21 @@ public class NoticiaListFragment extends Fragment
     public void onAttach(Context context)
     {
         super.onAttach(context);
+        contexto = this.getContext();
         if (context instanceof OnNoticiaListener)
         {
             mListener = (OnNoticiaListener) context;
-        } else {
+
+        } else
+        {
             throw new RuntimeException(context.toString()
                     + " must implement OnNoticiaListener");
         }
     }
 
     @Override
-    public void onDetach() {
+    public void onDetach()
+    {
         super.onDetach();
         mListener = null;
     }
@@ -108,7 +119,6 @@ public class NoticiaListFragment extends Fragment
      */
     public interface OnNoticiaListener
     {
-        // TODO: Update argument type and name
         void OnNoticiaListenerSelected(String imageResId, String name, String description);
     }
 
@@ -138,6 +148,7 @@ public class NoticiaListFragment extends Fragment
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 result = readStream(in);
+
 
                 JSONObject jsonRes = new JSONObject(result);
                 JSONArray jsonArray = jsonRes.getJSONArray("actors");
