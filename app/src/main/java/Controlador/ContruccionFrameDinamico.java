@@ -44,7 +44,8 @@ public class ContruccionFrameDinamico  {
     }
 
 
-    public boolean isOnline() {
+    public boolean isOnline()
+    {
 
             ConnectivityManager cm =
                     (ConnectivityManager) contexto.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -75,32 +76,27 @@ public class ContruccionFrameDinamico  {
                 seccBD.add(seccion);
             }
         }
-        catch (JSONException e) {
+        catch (JSONException e)
+        {
 
         }
         try {
 
             String ress = res.get();
-            //ObtencionDatosWeb.mostrarTexto(contexto,"Obtiene "+ress);
+
             if(ress==""){
                 return null;
             }
 
-            //imp = ress.substring(1, ress.length() - 1);
             imp = "{Secciones:"+ress+"}";
-            //ObtencionDatosWeb.mostrarTexto(contexto.getApplicationContext(),imp);
-           // List<String> items = Arrays.asList(imp.split("\\s*,\\s*"));
-            //----- Carga dinamica
-            //ScrollView sv = new ScrollView(contexto);
+
             JSONObject json = new JSONObject(imp);
             final LinearLayout ll = new LinearLayout(contexto);
 
             ll.setOrientation(LinearLayout.VERTICAL);
-            //sv.addView(ll);
 
             ArrayList<String> suscrito = new ArrayList<>();
 
-            //Label lbl = new Labl();
             TextView susTxtVie = new TextView(contexto.getApplicationContext());
             susTxtVie.setText("Disponibles");
             susTxtVie.setTextSize((float) 30);
@@ -151,25 +147,23 @@ public class ContruccionFrameDinamico  {
                                     ObtencionDatosWeb.mostrarTexto(contexto.getApplicationContext(), "Ha suscedido un error " + e.toString()/* + " ID:" + id*/);//+" -Seg "
                                 }
 
-                                // + secc2.size()+" -Prim "+secc.size());
-                                //actualizarContenido();
                             } else {
 
                                 ObtencionDatosWeb.mostrarTexto(contexto.getApplicationContext(), "Ya está suscrito a esta sección");
                             }
                         } else {
-                            //bd.eliminarDato(bd, ((String) buttonView.getText()));
+
                             seccBD.remove((String)buttonView.getText());
                             guardarCambios();
-                            //String IID_TOKEN = FirebaseInstanceId.getInstance().getToken();
+
                             FirebaseMessaging.getInstance().unsubscribeFromTopic(parse(seccion));
 
                             ObtencionDatosWeb.mostrarTexto(contexto.getApplicationContext(), "  Se ha dessuscrito a: " + buttonView.getText());
 
                         }
-                        //obtencionDatosWeb.mostrarTexto(getApplicationContext(),buttonView.getText()+" "+isChecked);
+
                     }
-                });/**/
+                });
 
             }
            /**/
@@ -196,6 +190,7 @@ public class ContruccionFrameDinamico  {
     public LinearLayout getLiner(){
         return ll;
     }
+
     private void guardarCambios(){
 
         try {

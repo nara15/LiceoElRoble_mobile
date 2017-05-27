@@ -22,7 +22,8 @@ public class ObtencionDatosWeb extends AsyncTask<String, Void, String>
     String response = "";
 
     @Override
-    protected String doInBackground(String... params) {
+    protected String doInBackground(String... params)
+    {
         URL urlL = null;
         try {
             urlL = new URL(params[0]);//"http://chmi.cz..../"
@@ -47,8 +48,8 @@ public class ObtencionDatosWeb extends AsyncTask<String, Void, String>
 
     }
 
-
-    private String readStream(InputStream is) {
+    private String readStream(InputStream is)
+    {
         try {
             ByteArrayOutputStream bo = new ByteArrayOutputStream();
             int i = is.read();
@@ -62,7 +63,9 @@ public class ObtencionDatosWeb extends AsyncTask<String, Void, String>
         }
 
     }
-    public static void mostrarTexto(Context pContext, String pMensaje){
+
+    public static void mostrarTexto(Context pContext, String pMensaje)
+    {
         Toast toast=Toast.makeText(pContext,pMensaje,Toast.LENGTH_SHORT);
         toast.setMargin(50,50);
         toast.show();

@@ -28,8 +28,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import Controlador.ControladorBD;
+import Model.NoticiaRESTClient;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,7 +64,20 @@ public class NoticiaListFragment extends Fragment
     {
         ControladorBD vbd = new ControladorBD(contexto);
         String hola = vbd.getTexto(contexto);
-        System.out.println("Holaaaaaaaa " + hola);
+
+        if (hola.length() > 1)
+        {
+            System.out.println(hola);
+            NoticiaRESTClient noticia = new NoticiaRESTClient(hola);
+            AsyncTask<String, Void, String> res = noticia.execute("https://design-web-dev-nara15.c9users.io/colegio_app/app_model/NoticiasREST.php");
+            try {
+                System.out.println( "Holaaaaaaaa " + res.get());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
 
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_noticias_list, container, false);
