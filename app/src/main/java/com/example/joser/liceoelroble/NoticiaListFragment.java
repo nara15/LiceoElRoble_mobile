@@ -55,7 +55,6 @@ public class NoticiaListFragment extends Fragment
         return new NoticiaListFragment();
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -107,16 +106,6 @@ public class NoticiaListFragment extends Fragment
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnNoticiaListener
     {
         void OnNoticiaListenerSelected(String imageResId, String name, String description);
@@ -148,7 +137,6 @@ public class NoticiaListFragment extends Fragment
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 result = readStream(in);
-
 
                 JSONObject jsonRes = new JSONObject(result);
                 JSONArray jsonArray = jsonRes.getJSONArray("actors");
@@ -188,22 +176,25 @@ public class NoticiaListFragment extends Fragment
             }
             else
             {
-                Toast.makeText(getActivity(), "Funciona " + this.result, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), "Funciona " + this.result, Toast.LENGTH_LONG).show();
             }
 
         }
 
         private String readStream(InputStream is)
         {
-            try {
+            try
+            {
                 ByteArrayOutputStream bo = new ByteArrayOutputStream();
                 int i = is.read();
-                while (i != -1) {
+                while (i != -1)
+                {
                     bo.write(i);
                     i = is.read();
                 }
                 return bo.toString();
-            } catch (IOException e) {
+            } catch (IOException e)
+            {
                 return "";
             }
 

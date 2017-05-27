@@ -16,7 +16,8 @@ import java.net.URL;
  * Created by JoseR on 14/4/2017.
  */
 
-public class ObtencionDatosWeb extends AsyncTask<String, Void, String> {
+public class ObtencionDatosWeb extends AsyncTask<String, Void, String>
+{
     final String ERROR = "Error al leer";
     String response = "";
 

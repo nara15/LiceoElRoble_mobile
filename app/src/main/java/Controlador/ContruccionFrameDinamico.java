@@ -110,24 +110,13 @@ public class ContruccionFrameDinamico  {
             linTxtVie.setText("_____________________________________________________");
             linTxtVie.setTextColor(Color.WHITE);
 
-
-           /* View view = new View(contexto);
-            view.setLayoutParams(new LinearLayout.LayoutParams(2, LinearLayout.LayoutParams.FILL_PARENT));
-            view.setBackgroundColor(Color.WHITE);*/
-
-
-
             ll.addView(susTxtVie);
             ll.addView(linTxtVie);
-            //ObtencionDatosWeb.mostrarTexto(contexto.getApplicationContext(),json.getJSONArray("Secciones").toString());
 
             for (int Item = 0; Item < json.getJSONArray("Secciones").length(); Item++) {
-                //JSONObject json = new JSONObject(items.get(Item));
-                //Log.i("Liceo responde:",json.toString());
-                //obtencionDatosWeb.mostrarTexto(getApplicationContext(),json.getString("Seccion"));
-                //Thread.sleep(4000);
+
                 final String seccion = json.getJSONArray("Secciones").getJSONObject(Item).getString("Seccion");
-                //ObtencionDatosWeb.mostrarTexto(contexto.getApplicationContext(),seccion);
+
                 Switch sw = new Switch(contexto.getApplicationContext());
                 sw.setBackgroundColor(Color.green(5));
                 sw.setTextColor(Color.WHITE);
@@ -150,8 +139,7 @@ public class ContruccionFrameDinamico  {
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (isChecked) {
                             if (!seccBD.contains((String)buttonView.getText())) {
-                                //long id = bd.insertarBD(bd, ((String) buttonView.getText()), contexto.getApplicationContext());
-                                //ArrayList<String> secc2 = bd.SelectBD(bd);
+
                                 String seccion = (String) buttonView.getText();
                                 seccBD.add(seccion);
                                 guardarCambios();
@@ -175,9 +163,9 @@ public class ContruccionFrameDinamico  {
                             guardarCambios();
                             //String IID_TOKEN = FirebaseInstanceId.getInstance().getToken();
                             FirebaseMessaging.getInstance().unsubscribeFromTopic(parse(seccion));
-                            //Log.d("TIDDDDDDDDDDDDDDDDDD",IID_TOKEN);
+
                             ObtencionDatosWeb.mostrarTexto(contexto.getApplicationContext(), "  Se ha dessuscrito a: " + buttonView.getText());
-                            //actualizarContenido();
+
                         }
                         //obtencionDatosWeb.mostrarTexto(getApplicationContext(),buttonView.getText()+" "+isChecked);
                     }

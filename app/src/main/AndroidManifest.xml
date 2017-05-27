@@ -22,6 +22,10 @@
         <activity
             android:name=".Suscripciones"
             android:label="@string/title_activity_suscripciones"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Noticias_Secundaria"
+            android:label="@string/title_activity_noticias__secundaria"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

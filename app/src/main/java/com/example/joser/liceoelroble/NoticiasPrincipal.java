@@ -20,7 +20,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class NoticiasPrincipal extends AppCompatActivity
+public class NoticiasPrincipal
+        extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, NoticiaListFragment.OnNoticiaListener
 {
 
@@ -38,7 +39,6 @@ public class NoticiasPrincipal extends AppCompatActivity
                     .add(R.id.include2, NoticiaListFragment.newInstance(), "noticiaList")
                     .commit();
         }
-
 
         setContentView(R.layout.activity_noticias_principal);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -111,7 +111,8 @@ public class NoticiasPrincipal extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.Suscripciones) {
+        if (id == R.id.Suscripciones)
+        {
             ProgressDialog dialog = ProgressDialog.show(NoticiasPrincipal.this, "",
                     "Cargando. Por favor espere...", true);
             dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
@@ -125,6 +126,12 @@ public class NoticiasPrincipal extends AppCompatActivity
             });
 
             Intent intent = new Intent(NoticiasPrincipal.this, Suscripciones.class);
+            startActivity(intent);
+            finish();
+        }
+        if (id == R.id.Noticias)
+        {
+            Intent intent = new Intent(NoticiasPrincipal.this, Noticias_Secundaria.class);
             startActivity(intent);
             finish();
         }

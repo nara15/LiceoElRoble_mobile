@@ -6,6 +6,11 @@
             android:id="@+id/Suscripciones"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Suscripciones" />
+        <item
+            android:id="@+id/Noticias"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Noticias generales"
+            />
     </group>
 
     <item android:title="Contacto">
