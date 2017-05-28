@@ -62,31 +62,46 @@ public class NoticiaListFragment extends Fragment
                              ViewGroup container,
                              Bundle savedInstanceState)
     {
-        ControladorBD vbd = new ControladorBD(contexto);
-        String hola = vbd.getTexto(contexto);
-
-        if (hola.length() > 1)
-        {
-            System.out.println(hola);
-            NoticiaRESTClient noticia = new NoticiaRESTClient(hola);
-            AsyncTask<String, Void, String> res = noticia.execute("https://design-web-dev-nara15.c9users.io/colegio_app/app_model/NoticiasREST.php");
-            try {
-                System.out.println( "Holaaaaaaaa " + res.get());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
-
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_noticias_list, container, false);
         final Activity activity = getActivity();
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(activity,2));
 
+
+        ControladorBD vbd = new ControladorBD(contexto);
+        String hola = vbd.getTexto(contexto);
         _noticias = new ArrayList<>();
-        new JSONAsyncTask().execute("http://microblogging.wingnity.com/JSONParsingTutorial/jsonActors");
+        if (hola.length() > 1)
+        {
+            NoticiaRESTClient noticia = new NoticiaRESTClient(hola);
+            AsyncTask<String, Void, String> res = noticia.execute("http://liceoelroble.com/MODEL/NoticiasREST.php");
+            try
+            {
+                //System.out.println( "Holaaaaaaaa " + res.get());
+
+                JSONObject jsonRes = new JSONObject(res.get());
+                JSONArray jsonArray = jsonRes.getJSONArray("noticias");
+
+                for (int i = 0; i < jsonArray.length(); i ++)
+                {
+                    JSONObject object = jsonArray.getJSONObject(i);
+                    Model.Noticia noticiaM = new Model.Noticia();
+                    noticiaM.set_name(object.getString("titulo"));
+                    noticiaM.set_newsImageURL(object.getString("imagen"));
+                    _noticias.add(noticiaM);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //_noticias = new ArrayList<>();
+        //new JSONAsyncTask().execute("http://microblogging.wingnity.com/JSONParsingTutorial/jsonActors");
 
         NoticiaAdapter noticiaAdapter = new NoticiaAdapter(activity);
         noticiaAdapter.setListener(mListener);
@@ -96,7 +111,6 @@ public class NoticiaListFragment extends Fragment
 
         return view;
     }
-
 
     @Override
     public void onAttach(Context context)
