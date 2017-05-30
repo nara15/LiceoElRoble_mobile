@@ -33,10 +33,11 @@ public class NoticiasPrincipal
         //  Iniciar los fragmentos de la noticia
         if (savedInstanceState == null)
         {
-
+            NoticiaListFragment fragment = NoticiaListFragment.newInstance();
+            fragment.setURL_Rest("http://liceoelroble.com/MODEL/NoticiasREST.php");
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.include2, NoticiaListFragment.newInstance(), "noticiaList")
+                    .add(R.id.include2, fragment, "noticiaList")
                     .commit();
         }
 

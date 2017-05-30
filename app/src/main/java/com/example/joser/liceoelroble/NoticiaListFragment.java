@@ -45,6 +45,7 @@ public class NoticiaListFragment extends Fragment
 {
     private ArrayList<Model.Noticia> _noticias;
     private OnNoticiaListener mListener;
+    private String mREST_URL;
     Context contexto;
 
     public NoticiaListFragment()
@@ -68,18 +69,15 @@ public class NoticiaListFragment extends Fragment
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(activity,2));
 
-
         ControladorBD vbd = new ControladorBD(contexto);
         String hola = vbd.getTexto(contexto);
         _noticias = new ArrayList<>();
         if (hola.length() > 1)
         {
             NoticiaRESTClient noticia = new NoticiaRESTClient(hola);
-            AsyncTask<String, Void, String> res = noticia.execute("http://liceoelroble.com/MODEL/NoticiasREST.php");
+            AsyncTask<String, Void, String> res = noticia.execute(mREST_URL/*"http://liceoelroble.com/MODEL/NoticiasREST.php"*/);
             try
             {
-                //System.out.println( "Holaaaaaaaa " + res.get());
-
                 JSONObject jsonRes = new JSONObject(res.get());
                 JSONArray jsonArray = jsonRes.getJSONArray("noticias");
 
@@ -99,9 +97,6 @@ public class NoticiaListFragment extends Fragment
                 e.printStackTrace();
             }
         }
-
-        //_noticias = new ArrayList<>();
-        //new JSONAsyncTask().execute("http://microblogging.wingnity.com/JSONParsingTutorial/jsonActors");
 
         NoticiaAdapter noticiaAdapter = new NoticiaAdapter(activity);
         noticiaAdapter.setListener(mListener);
@@ -138,6 +133,11 @@ public class NoticiaListFragment extends Fragment
     public interface OnNoticiaListener
     {
         void OnNoticiaListenerSelected(String imageResId, String name, String description);
+    }
+
+    public void setURL_Rest(String mREST_URL)
+    {
+        this.mREST_URL = mREST_URL;
     }
 
     private class JSONAsyncTask extends AsyncTask<String, Void, Boolean>

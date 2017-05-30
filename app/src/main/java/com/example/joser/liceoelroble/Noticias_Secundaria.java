@@ -26,10 +26,11 @@ public class Noticias_Secundaria
 
         if (savedInstanceState == null)
         {
-
+            NoticiaListFragment fragment = NoticiaListFragment.newInstance();
+            fragment.setURL_Rest("http://www.liceoelroble.com/MODEL/NoticiasGeneralREST.php");
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.app_noticias_secundaria, NoticiaListFragment.newInstance(), "noticiaList")
+                    .add(R.id.app_noticias_secundaria, fragment, "noticiaList")
                     .commit();
         }
 
