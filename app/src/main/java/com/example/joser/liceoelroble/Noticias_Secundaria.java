@@ -78,7 +78,7 @@ public class Noticias_Secundaria
     public void OnNoticiaListenerSelected(String image, String name, String description)
     {
         final NoticiaDetailFragment detailFragment =
-                NoticiaDetailFragment.newInstance(image, name);
+                NoticiaDetailFragment.newInstance(image, name, description);
 
         getSupportFragmentManager()
                 .beginTransaction()

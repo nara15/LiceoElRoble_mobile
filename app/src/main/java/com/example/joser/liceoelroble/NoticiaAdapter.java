@@ -37,13 +37,14 @@ public class NoticiaAdapter extends RecyclerView.Adapter<NoticiaViewModel>
     {
         final String name = _noticias.get(position).get_name();
         final String imageURL = _noticias.get(position).get_newsImageURL();
+        final String url = _noticias.get(position).get_url();
         holder.setData(imageURL, name);
 
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v)
             {
-                mListener.OnNoticiaListenerSelected(imageURL, name, "Descripción");
+                mListener.OnNoticiaListenerSelected(imageURL, name, url);
             }
         });
     }

@@ -75,7 +75,7 @@ public class NoticiaListFragment extends Fragment
         if (hola.length() > 1)
         {
             NoticiaRESTClient noticia = new NoticiaRESTClient(hola);
-            AsyncTask<String, Void, String> res = noticia.execute(mREST_URL/*"http://liceoelroble.com/MODEL/NoticiasREST.php"*/);
+            AsyncTask<String, Void, String> res = noticia.execute(mREST_URL);
             try
             {
                 JSONObject jsonRes = new JSONObject(res.get());
@@ -87,6 +87,7 @@ public class NoticiaListFragment extends Fragment
                     Model.Noticia noticiaM = new Model.Noticia();
                     noticiaM.set_name(object.getString("titulo"));
                     noticiaM.set_newsImageURL(object.getString("imagen"));
+                    noticiaM.set_url(object.getString("enlace"));
                     _noticias.add(noticiaM);
                 }
             } catch (InterruptedException e) {

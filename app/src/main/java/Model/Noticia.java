@@ -9,6 +9,7 @@ public class Noticia
 {
     private String _name;
     private String _newsImageURL;
+    private String _url;
 
     public String get_name() {
         return _name;
@@ -24,5 +25,15 @@ public class Noticia
 
     public void set_newsImageURL(String _newsImageURL) {
         this._newsImageURL = _newsImageURL;
+    }
+
+    public String get_url()
+    {
+        return _url;
+    }
+
+    public void set_url(String _url)
+    {
+        this._url = _url;
     }
 }
