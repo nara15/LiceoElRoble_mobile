@@ -61,7 +61,9 @@ public class NoticiaDetailFragment extends Fragment
         final Bundle args = getArguments();
         nameTextView.setText(args.getString(ARGUMENT_NAME));
         urlText.setText(args.getString(ARGUMENT_URL));
+
         
+
         DownloadImageTask imageTask = new DownloadImageTask(imageView);
         AsyncTask<String, Void, Bitmap> res = imageTask.execute(args.getString(ARGUMENT_IMAGE));
         try
